@@ -58,8 +58,10 @@
       document.getElementById("current-uid").innerHTML = uid
     }
   }).then(function (user) {
+    console.log('add user to firebase database')
     return firebase.database().ref('/users/' + user.uid.set({
-      name: user.displayName
+      name: user.displayName,
+      email: user.email
     }))
   }).catch(function (error) {
     console.log(error)

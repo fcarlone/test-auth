@@ -57,18 +57,19 @@
       console.log('user id', uid)
       document.getElementById("current-uid").innerHTML = uid
     }
+    // Store user id and name to database;
+    console.log('add user to firebase database')
+    firebase.database().ref('/users/' + uid).set({
+      name: user.displayName,
+      email: user.email,
+      provider: user.providerData
+    }).catch(function (error) {
+      console.log(error)
+    });
   })
 
-  console.log('add user to firebase database')
-  firebase.database().ref('/users/' + user.uid).set({
-    name: user.displayName,
-    email: user.email,
-    provider: user.providerData
-  }).catch(function (error) {
-    console.log(error)
-  });
 
-// Store user id and name to database;
+
 
 
 </script>

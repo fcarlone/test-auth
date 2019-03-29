@@ -32,7 +32,8 @@
 
   <p><a href="auth.html">Sign-up</a></p>
 
-  <h2>The current user id</h2>
+  <h2>The current user id<p id="current-uid"></p>
+  </h2>
 
 
 </body>
@@ -48,8 +49,9 @@
       let providerData = user.providerData;
       // ...
       // let userID = Auth.auth().currentUser!.uid
+      console.log('user name', displayName)
       console.log('user id', uid)
-
+      document.getElementById("current-uid").innerHTML(uid)
     }
 
   });

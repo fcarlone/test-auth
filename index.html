@@ -12,6 +12,31 @@
   <h1>The Homepage</h1>
 
   <p><a href="auth.html">Sign-up</a></p>
+
+  <h2>The current user id</h2>
+
+
 </body>
+
+<!-- Test Script -->
+<script>
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // User is signed in.
+      let displayName = user.displayName;
+      let email = user.email;
+      let uid = user.uid;
+      let providerData = user.providerData;
+      // ...
+    } else {
+      // User is signed out.
+      // ...
+    }
+  });
+
+  // let userID = Auth.auth().currentUser!.uid
+  console.log('user id', uid)
+
+</script>
 
 </html>

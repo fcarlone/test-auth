@@ -40,10 +40,10 @@
 
 <!-- Test Script -->
 <script>
-  let displayName = user.displayName;
-  let email = user.email;
-  let uid = user.uid;
-  let providerData = user.providerData;
+  let displayName;
+  let email;
+  let uid;
+  let providerData;
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
@@ -61,7 +61,8 @@
     console.log('add user to firebase database')
     return firebase.database().ref('/users/' + user.uid.set({
       name: user.displayName,
-      email: user.email
+      email: user.email,
+      provider: user.providerData
     }))
   }).catch(function (error) {
     console.log(error)

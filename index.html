@@ -40,21 +40,32 @@
 
 <!-- Test Script -->
 <script>
+  let displayName = user.displayName;
+  let email = user.email;
+  let uid = user.uid;
+  let providerData = user.providerData;
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
-      let displayName = user.displayName;
-      let email = user.email;
-      let uid = user.uid;
-      let providerData = user.providerData;
+      displayName = user.displayName;
+      email = user.email;
+      uid = user.uid;
+      providerData = user.providerData;
       // ...
       // let userID = Auth.auth().currentUser!.uid
       console.log('user name', displayName)
       console.log('user id', uid)
       document.getElementById("current-uid").innerHTML = uid
     }
+  }).then(function (user) {
+    return firebase.database().ref('/users/' + user.uid.set({
+      name: user.displayName
+    }))
+  }).catch(function (error) {
+    console.log(error)
+  });;
 
-  });
+// Store user id and name to database;
 
 
 </script>

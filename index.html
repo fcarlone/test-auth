@@ -60,7 +60,7 @@
   })
 
   console.log('add user to firebase database')
-  return firebase.database().ref('/users/' + user.uid).set({
+  firebase.database().ref('/users/' + user.uid).set({
     name: user.displayName,
     email: user.email,
     provider: user.providerData

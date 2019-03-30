@@ -31,11 +31,14 @@
   <h1>The Homepage</h1>
 
   <p><a href="auth.html">Sign-up</a></p>
+  <button id="sign-out">Sign-out</button>
+
 
   <h2>The current user id</h2>
   <p id="current-uid"></p>
 
-
+  <h2>The current user name</h2>
+  <p id="current-user-name"></p>
 </body>
 
 <!-- Test Script -->
@@ -50,12 +53,12 @@
       displayName = user.displayName;
       email = user.email;
       uid = user.uid;
-      providerData = user.providerData;
       // ...
       // let userID = Auth.auth().currentUser!.uid
       console.log('user name', displayName)
       console.log('user id', uid)
       document.getElementById("current-uid").innerHTML = uid
+      document.getElementById("current-user-name").innerHTML = displayName
     }
     // Store user id and name to database;
     console.log('add user to firebase database')
@@ -68,9 +71,19 @@
     });
   })
 
+  firebase.auth().signOut().then(function () {
+    console.log(`user: ${user.uid} signed out`)
+  }).catch(function (error) {
+    console.log('error')
+  });
 
-
-
+  document.getElementById("sign-out").addEventListener("click", function () {
+    firebase.auth().signOut().then(function () {
+      console.log('Sign-out successful')
+    }).catch(function (error) {
+      console.log(error)
+    });
+  })
 
 </script>
 

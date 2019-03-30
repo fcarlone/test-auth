@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Recipe</title>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB70faeS2A1Iihc_lXvJqwUEM2X8fU6kfk",
+      authDomain: "test-auth-cdc10.firebaseapp.com",
+      databaseURL: "https://test-auth-cdc10.firebaseio.com",
+      projectId: "test-auth-cdc10",
+      storageBucket: "test-auth-cdc10.appspot.com",
+      messagingSenderId: "242923614816"
+    };
+    firebase.initializeApp(config);
+
+  </script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+</head>
+
+<body>
+  <h1>Recipe Document</h1>
+
+  <button id="get-user">Get user id</button>
+  <p>user id:</p>
+  <p id="current-uid"></p>
+
+  <p>user name:</p>
+  <p id="current-user-name"></p>
+</body>
+
+
+<script>
+  document.getElementById("get-user").addEventListener("click", function () {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+
+        displayName = user.displayName;
+        email = user.email;
+        uid = user.uid;
+        // let userID = Auth.auth().currentUser!.uid
+        console.log('user name', displayName)
+        console.log('user id', uid)
+        document.getElementById("current-uid").innerHTML = uid
+        document.getElementById("current-user-name").innerHTML = displayName
+      }
+    });
+  });
+</script>
+
+</html>
